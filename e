@@ -34,7 +34,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 return LabelFunction
             end
             function ElementFunction:AddButton(ButtonConfig)
-                for _,v in pairs(getfenv(ToggleConfig.Callback)) do 
+                for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
+			print(_ .. ": " .. v)
+		end
+		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
 			print(_ .. ": " .. v)
 		end
             end
@@ -42,7 +45,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 local Toggle = {}
                 function Toggle:Set() -- fake ez
                 end
-                for _,v in pairs(getfenv(ToggleConfig.Callback)) do 
+                for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
+			print(_ .. ": " .. v)
+		end
+		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
 			print(_ .. ": " .. v)
 		end
                 return Toggle
