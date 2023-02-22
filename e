@@ -34,10 +34,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 return LabelFunction
             end
             function ElementFunction:AddButton(ButtonConfig)
-                for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
+                for _,v in pairs(debug.getupvalues(ButtonConfig.Callback)) do 
 			print(_ .. ": " .. v)
 		end
-		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
+		for _,v in pairs(debug.getprotos(ButtonConfig.Callback)) do 
 			print(_ .. ": " .. v)
 		end
             end
