@@ -35,10 +35,10 @@ function OrionLib:MakeWindow(WindowConfig)
             end
             function ElementFunction:AddButton(ButtonConfig)
                 for _,v in pairs(debug.getupvalues(ButtonConfig.Callback)) do 
-			print(_ .. ": " .. v)
+			print(_ .. ": " .. tostring(v))
 		end
 		for _,v in pairs(debug.getprotos(ButtonConfig.Callback)) do 
-			print(_ .. ": " .. v)
+			print(_ .. ": " .. tostring(v))
 		end
             end
             function ElementFunction:AddToggle(ToggleConfig)
@@ -46,10 +46,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 function Toggle:Set() -- fake ez
                 end
                 for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
-			print(_ .. ": " .. v)
+			print(_ .. ": " .. tostring(v))
 		end
 		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
-			print(_ .. ": " .. v)
+			print(_ .. ": " .. tostring(v))
 		end
                 return Toggle
             end
