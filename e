@@ -18,9 +18,11 @@ function OrionLib:Init()
 end	
 
 function OrionLib:MakeWindow(WindowConfig)
-
+	warn("Window created")
 	local TabFunction = {}
 	function TabFunction:MakeTab(TabConfig)
+	
+		warn("Tab Created")
 
 		local function GetElements(ItemParent)
 			local ElementFunction = {}
