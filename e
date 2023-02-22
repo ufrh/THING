@@ -13,6 +13,31 @@ end
 function OrionLib:Init()
 end
 
+local stringify
+local insert = table.insert
+ 
+stringify = function(v, spaces, usesemicolon, depth)
+	if type(v) ~= 'table' then
+		return tostring(v)
+	elseif not next(v) then
+		return '{}'
+	end
+ 
+	spaces = spaces or 4
+	depth = depth or 1
+ 
+	local space = (" "):rep(depth * spaces)
+	local sep = usesemicolon and ";" or ","
+	local concatenationBuilder = {"{"}
+ 
+	for k, x in next, v do
+		insert(concatenationBuilder, ("\n%s[%s] = %s%s"):format(space,type(k)=='number'and tostring(k)or('"%s"'):format(tostring(k)), stringify(x, spaces, usesemicolon, depth+1), sep))
+	end
+ 
+	local s = table.concat(concatenationBuilder)
+	return ("%s\n%s}"):format(s:sub(1,-2), space:sub(1, -spaces-1))
+end
+
 function OrionLib:MakeWindow(WindowConfig)
     warn("Window created")
     local TabFunction = {}
@@ -35,10 +60,10 @@ function OrionLib:MakeWindow(WindowConfig)
             end
             function ElementFunction:AddButton(ButtonConfig)
                 for _,v in pairs(debug.getupvalues(ButtonConfig.Callback)) do 
-			print(_ .. ": " .. tostring(v))
+			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
 		for _,v in pairs(debug.getprotos(ButtonConfig.Callback)) do 
-			print(_ .. ": " .. tostring(v))
+			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
             end
             function ElementFunction:AddToggle(ToggleConfig)
@@ -46,10 +71,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 function Toggle:Set() -- fake ez
                 end
                 for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
-			print(_ .. ": " .. tostring(v))
+			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
 		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
-			print(_ .. ": " .. tostring(v))
+			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
                 return Toggle
             end
