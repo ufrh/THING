@@ -81,6 +81,7 @@ function OrionLib:MakeWindow(WindowConfig)
 	
 	function ElementFunction:AddSection(SectionConfig)
 		local Section = {}
+		warn("Section Created")
 		Section = GetElements()
 		return Section 
 	end
