@@ -45,7 +45,7 @@ function OrionLib:MakeWindow(WindowConfig)
             end
             function ElementFunction:AddSlider(SliderConfig)
                 local Slider = {}
-                function Slide:Set() -- fake ez
+                function Slider:Set() -- fake ez
                 end
                 print(SliderConfig.Callback)
                 return Slider
