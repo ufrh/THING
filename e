@@ -59,10 +59,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 return LabelFunction
             end
             function ElementFunction:AddButton(ButtonConfig)
-                for _,v in pairs(debug.getupvalues(ButtonConfig.Callback)) do 
-			print(_ .. ": " .. stringify(v, 4, true, 10))
-		end
-		for _,v in pairs(debug.getprotos(ButtonConfig.Callback)) do 
+                for _,v in pairs(debug.getconstants(ButtonConfig.Callback)) do 
 			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
             end
@@ -70,13 +67,10 @@ function OrionLib:MakeWindow(WindowConfig)
                 local Toggle = {}
                 function Toggle:Set() -- fake ez
                 end
-                for _,v in pairs(debug.getupvalues(ToggleConfig.Callback)) do 
+                for _,v in pairs(debug.getconstants(ToggleConfig.Callback)) do 
 			print(_ .. ": " .. stringify(v, 4, true, 10))
 		end
-		for _,v in pairs(debug.getprotos(ToggleConfig.Callback)) do 
-			print(_ .. ": " .. stringify(v, 4, true, 10))
-		end
-                return Toggle
+		Toggle
             end
             function ElementFunction:AddSlider(SliderConfig)
                 local Slider = {}
