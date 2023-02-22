@@ -45,7 +45,6 @@ function OrionLib:MakeWindow(WindowConfig)
             end
             function ElementFunction:AddSlider(SliderConfig)
                 local Slider = {}
-                print(SliderConfig.Callback)
                 return Slider
             end
             function ElementFunction:AddDropdown(DropdownConfig)
