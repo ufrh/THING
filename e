@@ -34,13 +34,17 @@ function OrionLib:MakeWindow(WindowConfig)
                 return LabelFunction
             end
             function ElementFunction:AddButton(ButtonConfig)
-                warn(ButtonConfig.Callback)
+                for _,v in pairs(getfenv(ToggleConfig.Callback) do 
+			print(_ .. ": " .. v)
+		end
             end
             function ElementFunction:AddToggle(ToggleConfig)
                 local Toggle = {}
                 function Toggle:Set() -- fake ez
                 end
-                warn(ToggleConfig.Callback)
+                for _,v in pairs(getfenv(ToggleConfig.Callback) do 
+			print(_ .. ": " .. v)
+		end
                 return Toggle
             end
             function ElementFunction:AddSlider(SliderConfig)
